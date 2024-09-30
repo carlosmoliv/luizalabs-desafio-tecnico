@@ -1,7 +1,7 @@
 import { FileParserService } from './file-parser.service';
-import { User } from '../entities/user';
-import { Order } from '../entities/order';
-import { Product } from '../entities/product';
+import { User } from '../../entities/user';
+import { Order } from '../../entities/order';
+import { Product } from '../../entities/product';
 
 describe('FileParserService', () => {
   let sut: FileParserService;

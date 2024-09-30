@@ -1,6 +1,6 @@
-import { Product } from '../entities/product';
-import { Order } from '../entities/order';
-import { User } from '../entities/user';
+import { Product } from '../../entities/product';
+import { Order } from '../../entities/order';
+import { User } from '../../entities/user';
 import { ParseLineOutput } from './parse-line.output';
 
 export class FileParserService {
