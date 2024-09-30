@@ -4,7 +4,8 @@
 
 Este projeto é um desafio técnico para a Luiza Labs, onde o objetivo principal é desenvolver um sistema para processar pedidos a partir de arquivos de dados. O sistema deve ler informações do arquivo, organizar os dados de usuários, pedidos e produtos, e retornar uma estrutura normalizada.
 
-### Instalação
+## 📦 Instalação
+
 1. Instale as dependências:
    ```bash
    npm install
