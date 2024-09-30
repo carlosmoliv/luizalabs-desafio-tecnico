@@ -12,7 +12,6 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "baseUrl": "./src",
-    "strict": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
   },
