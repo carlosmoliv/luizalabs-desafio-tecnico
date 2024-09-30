@@ -1,0 +1,13 @@
+{
+  "name": "luizalabs-desafio-tecnico",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Carlos Oliveira <carlosviniciusmoliveira@gmail.com>",
+  "repository": "git@github.com:carlosmoliv/luizalabs-desafio-tecnico.git",
+  "license": "MIT",
+  "description": "A Node.js and TypeScript solution to process desnormalized order data from a legacy system into a normalized JSON format."
+}
