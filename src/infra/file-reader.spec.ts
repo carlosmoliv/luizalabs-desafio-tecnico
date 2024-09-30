@@ -26,12 +26,16 @@ describe('FileReaderImpl', () => {
     fs.unlinkSync(sampleFilePath);
   });
 
-  test('should read a file and return its contents as an array of strings', () => {
+  test('read a file and return its contents as an array of strings', () => {
     const lines = sut.read(sampleFilePath);
 
     expect(lines.length).toBe(3);
     expect(lines[0]).toBe('Line 1: First line');
     expect(lines[1]).toBe('Line 2: Second line');
     expect(lines[2]).toBe('Line 3: Third line');
+  });
+
+  it('throws an error if the file does not exist', () => {
+    expect(() => sut.read('non_existent_file.txt')).toThrowError();
   });
 });
