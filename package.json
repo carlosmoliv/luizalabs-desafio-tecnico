@@ -9,5 +9,9 @@
   "author": "Carlos Oliveira <carlosviniciusmoliveira@gmail.com>",
   "repository": "git@github.com:carlosmoliv/luizalabs-desafio-tecnico.git",
   "license": "MIT",
-  "description": "A Node.js and TypeScript solution to process desnormalized order data from a legacy system into a normalized JSON format."
+  "description": "A Node.js and TypeScript solution to process desnormalized order data from a legacy system into a normalized JSON format.",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2"
+  }
 }
