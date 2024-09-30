@@ -35,6 +35,21 @@ describe('FileReaderImpl', () => {
     expect(lines[2]).toBe('Line 3: Third line');
   });
 
+  it('returns an empty array if the file is empty', () => {
+    const emptyFilePath = path.join(
+      __dirname,
+      '../../test/data',
+      'empty_file.txt',
+    );
+    fs.writeFileSync(emptyFilePath, '');
+
+    const fileReader = new FileReaderImpl();
+    const lines = fileReader.read(emptyFilePath);
+
+    expect(lines.length).toBe(0);
+    fs.unlinkSync(emptyFilePath);
+  });
+
   it('throws an error if the file does not exist', () => {
     expect(() => sut.read('non_existent_file.txt')).toThrowError();
   });
