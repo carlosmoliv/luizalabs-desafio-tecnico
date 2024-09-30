@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { makeOrderProcessorService } from './make-order-processor-service.factory';
+import { makeOrderProcessorService } from './factories/make-order-processor-service.factory';
 
 const DATA_FILE = 'data/data_1.txt';
 
