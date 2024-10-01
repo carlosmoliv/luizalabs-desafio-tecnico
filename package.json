@@ -45,8 +45,9 @@
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s",
-      "!<rootDir>/factories/**",
-      "!<rootDir>/main.ts"
+      "!<rootDir>/src/factories/**",
+      "!<rootDir>/src/main.ts",
+      "!<rootDir>/test/**"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
