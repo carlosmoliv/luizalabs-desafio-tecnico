@@ -51,6 +51,6 @@ describe('FileReaderImpl', () => {
   });
 
   it('throws an error if the file does not exist', () => {
-    expect(() => sut.read('non_existent_file.txt')).toThrowError();
+    expect(() => sut.read('non_existent_file.txt')).toThrow();
   });
 });
