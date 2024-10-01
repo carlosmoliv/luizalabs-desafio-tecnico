@@ -35,12 +35,10 @@ describe('OrderProcessor', () => {
     expect(order1.date).toBe('2021-11-16');
     expect(order1.products.length).toBe(2);
 
-    // Check the first product
     const product1 = order1.products[0];
     expect(product1.product_id).toBe(2);
     expect(product1.value).toBe('1578.57');
 
-    // Check the second product
     const product2 = order1.products[1];
     expect(product2.product_id).toBe(3);
     expect(product2.value).toBe('200.00');
