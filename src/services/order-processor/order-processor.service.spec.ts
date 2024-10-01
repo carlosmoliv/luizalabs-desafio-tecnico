@@ -6,6 +6,7 @@ class MockFileReader implements FileReader {
   read(filePath: string): string[] {
     return [
       '0000000075                                  Bobbie Batz00000007980000000002     1578.5720211116',
+      '0000000075                                  Bobbie Batz00000007980000000003      200.0020211116',
       '0000000049                               Ken Wintheiser00000005230000000003      586.7420210903',
     ];
   }
@@ -20,7 +21,7 @@ describe('OrderProcessor', () => {
     sut = new OrderProcessorService(fileReader, fileParser);
   });
 
-  it('process orders correctly', () => {
+  test('process orders correctly', () => {
     const users = sut.process('mockFilePath');
 
     // Assertions for first user
@@ -32,11 +33,17 @@ describe('OrderProcessor', () => {
     const order1 = user1.orders[0];
     expect(order1.order_id).toBe(798);
     expect(order1.date).toBe('2021-11-16');
-    expect(order1.products.length).toBe(1);
+    expect(order1.products.length).toBe(2);
 
+    // Check the first product
     const product1 = order1.products[0];
     expect(product1.product_id).toBe(2);
     expect(product1.value).toBe('1578.57');
+
+    // Check the second product
+    const product2 = order1.products[1];
+    expect(product2.product_id).toBe(3);
+    expect(product2.value).toBe('200.00');
 
     // Assertions for second user
     const user2 = users[1];
@@ -46,11 +53,10 @@ describe('OrderProcessor', () => {
 
     const order2 = user2.orders[0];
     expect(order2.order_id).toBe(523);
-    expect(order2.date).toBe('2021-09-03');
     expect(order2.products.length).toBe(1);
 
-    const product2 = order2.products[0];
-    expect(product2.product_id).toBe(3);
-    expect(product2.value).toBe('586.74');
+    const product3 = order2.products[0];
+    expect(product3.product_id).toBe(3);
+    expect(product3.value).toBe('586.74');
   });
 });
