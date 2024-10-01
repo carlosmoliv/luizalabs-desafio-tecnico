@@ -1,3 +1,6 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
 import { FileReader } from '../../ports/file-reader';
 import { FileParserService } from '../file-parser/file-parser.service';
 import { User } from '../../entities/user';
@@ -11,6 +14,29 @@ export class OrderProcessorService {
   ) {}
 
   process(filePath: string): User[] {
+    const stat = fs.statSync(filePath);
+
+    if (stat.isFile()) {
+      return this.processFile(filePath);
+    } else if (stat.isDirectory()) {
+      return this.processDirectory(filePath);
+    }
+  }
+
+  private processDirectory(directoryPath: string): User[] {
+    const files = fs.readdirSync(directoryPath);
+    let allUsers: User[] = [];
+
+    for (const file of files) {
+      const filePath = path.join(directoryPath, file);
+      const users = this.processFile(filePath);
+      allUsers = [...allUsers, ...users];
+    }
+
+    return allUsers;
+  }
+
+  private processFile(filePath: string): User[] {
     const lines = this.fileReader.read(filePath);
 
     lines.forEach((line) => {

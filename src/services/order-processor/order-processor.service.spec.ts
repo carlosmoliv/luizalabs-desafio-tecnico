@@ -2,6 +2,8 @@ import { FileReader } from '../../ports/file-reader';
 import { OrderProcessorService } from './order-processor.service';
 import { FileParserService } from '../file-parser/file-parser.service';
 
+jest.mock('fs');
+
 class MockFileReader implements FileReader {
   read(filePath: string): string[] {
     return [
@@ -19,6 +21,10 @@ describe('OrderProcessor', () => {
     const fileReader = new MockFileReader();
     const fileParser = new FileParserService();
     sut = new OrderProcessorService(fileReader, fileParser);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test('process orders correctly', () => {
