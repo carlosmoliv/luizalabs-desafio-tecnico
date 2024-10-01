@@ -3,6 +3,7 @@ import * as path from 'path';
 import { makeOrderProcessorService } from './factories/make-order-processor-service.factory';
 
 const DATA_FILE = 'data/data_1.txt';
+const DATA_DIRECTORY = 'data/';
 
 function processOrders(filePath: string) {
   const orderProcessor = makeOrderProcessorService();
@@ -12,8 +13,13 @@ function processOrders(filePath: string) {
 function main() {
   try {
     const filePath = path.join(__dirname, DATA_FILE);
-    const users = processOrders(filePath);
-    console.log(JSON.stringify(users, null, 2));
+    const directoryPath = path.join(__dirname, DATA_DIRECTORY);
+
+    const usersFromDirectory = processOrders(filePath);
+    console.log(
+      'Processed users:',
+      JSON.stringify(usersFromDirectory, null, 2),
+    );
   } catch (error) {
     console.error('Error processing orders:', error);
   }
