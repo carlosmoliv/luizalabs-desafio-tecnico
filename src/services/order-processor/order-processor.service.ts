@@ -20,6 +20,8 @@ export class OrderProcessorService {
       return this.processFile(filePath);
     } else if (stat.isDirectory()) {
       return this.processDirectory(filePath);
+    } else {
+      throw new Error('Input is neither a file nor a directory.');
     }
   }
 
