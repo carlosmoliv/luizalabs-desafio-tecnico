@@ -5,6 +5,8 @@ import { FileReader } from '../../ports/file-reader';
 import { FileParserService } from '../file-parser/file-parser.service';
 import { User } from '../../entities/user';
 import { InvalidPathException } from './invalid-path.exception';
+import { Order } from '../../entities/order';
+import { Product } from '../../entities/product';
 
 export class OrderProcessorService {
   constructor(
@@ -26,12 +28,12 @@ export class OrderProcessorService {
 
   private processDirectory(directoryPath: string): User[] {
     const files = fs.readdirSync(directoryPath);
-    let allUsers: User[] = [];
+    const allUsers: User[] = [];
 
     for (const file of files) {
       const filePath = path.join(directoryPath, file);
       const users = this.processFile(filePath);
-      allUsers = [...allUsers, ...users];
+      allUsers.push(...users);
     }
 
     return allUsers;
@@ -43,24 +45,32 @@ export class OrderProcessorService {
 
     lines.forEach((line) => {
       const { user, order, product } = this.fileParser.parseLine(line);
-
-      if (!users.has(user.user_id)) {
-        users.set(user.user_id, user);
-      }
-
-      const existingUser = users.get(user.user_id);
-      let existingOrder = existingUser.orders.find(
-        (o) => o.order_id === order.order_id,
-      );
-
-      if (!existingOrder) {
-        existingUser.addOrder(order);
-        existingOrder = order;
-      }
-
-      existingOrder.addProduct(product);
+      this.addOrUpdateUser(users, user, order, product);
     });
 
     return Array.from(users.values());
+  }
+
+  private addOrUpdateUser(
+    users: Map<number, User>,
+    user: User,
+    order: Order,
+    product: Product,
+  ) {
+    if (!users.has(user.user_id)) {
+      users.set(user.user_id, user);
+    }
+
+    const existingUser = users.get(user.user_id);
+    let existingOrder = existingUser.orders.find(
+      (o) => o.order_id === order.order_id,
+    );
+
+    if (!existingOrder) {
+      existingUser.addOrder(order);
+      existingOrder = order;
+    }
+
+    existingOrder.addProduct(product);
   }
 }
