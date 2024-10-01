@@ -16,15 +16,19 @@ Este projeto é um desafio técnico para a Luiza Labs, onde o objetivo principal
    ```bash
    npm run build
 
-2. Execute o script para processar pedidos:
+2. Execute o script para processar pedidos a partir de um único arquivo:
    ```bash
    npm run process-orders
 
-3. Execute os testes:
+3. Execute o script para processar pedidos a partir de um diretório com múltiplos arquivos:
+   ```bash
+   npm run process-orders-dir
+
+4. Execute os testes:
    ```bash
    npm run test
 
-4. Execute os testes com coverage:
+5. Execute os testes com coverage:
    ```bash
    npm run test:cov
 
