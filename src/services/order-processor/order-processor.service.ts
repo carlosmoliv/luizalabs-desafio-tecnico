@@ -20,7 +20,7 @@ export class OrderProcessorService {
         this.users.set(user.user_id, user);
       }
 
-      const existingUser = this.users.get(user.user_id)!;
+      const existingUser = this.users.get(user.user_id);
       let existingOrder = existingUser.orders.find(
         (o) => o.order_id === order.order_id,
       );
