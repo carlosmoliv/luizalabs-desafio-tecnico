@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "process-orders": "node dist/main.js",
+    "process-orders": "node dist/main.js --file",
+    "process-orders-dir": "node dist/main.js --directory",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "postbuild": "copyfiles -u 1 ./src/data/**/* ./dist/",
     "test": "jest",
