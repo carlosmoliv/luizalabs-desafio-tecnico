@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import { FileReader } from '../../ports/file-reader';
 import { OrderProcessorService } from './order-processor.service';
 import { FileParserService } from '../file-parser/file-parser.service';
+import { InvalidPathException } from './invalid-path.exception';
 
 jest.mock('fs');
 
@@ -122,5 +123,16 @@ describe('OrderProcessor', () => {
     const product3 = order2.products[0];
     expect(product3.product_id).toBe(3);
     expect(product3.value).toBe('586.74');
+  });
+
+  test('throws an exception if input is neither a file nor a directory', () => {
+    (fs.statSync as jest.Mock).mockReturnValue({
+      isFile: () => false,
+      isDirectory: () => false,
+    });
+
+    expect(() => {
+      sut.process('invalidPath');
+    }).toThrow(InvalidPathException);
   });
 });

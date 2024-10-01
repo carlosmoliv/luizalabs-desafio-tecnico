@@ -4,6 +4,7 @@ import * as path from 'path';
 import { FileReader } from '../../ports/file-reader';
 import { FileParserService } from '../file-parser/file-parser.service';
 import { User } from '../../entities/user';
+import { InvalidPathException } from './invalid-path.exception';
 
 export class OrderProcessorService {
   constructor(
@@ -18,9 +19,9 @@ export class OrderProcessorService {
       return this.processFile(filePath);
     } else if (stat.isDirectory()) {
       return this.processDirectory(filePath);
-    } else {
-      throw new Error('Input is neither a file nor a directory.');
     }
+
+    throw new InvalidPathException();
   }
 
   private processDirectory(directoryPath: string): User[] {
