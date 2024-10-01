@@ -15,11 +15,8 @@ function main() {
     const filePath = path.join(__dirname, DATA_FILE);
     const directoryPath = path.join(__dirname, DATA_DIRECTORY);
 
-    const usersFromDirectory = processOrders(filePath);
-    console.log(
-      'Processed users:',
-      JSON.stringify(usersFromDirectory, null, 2),
-    );
+    const users = processOrders(filePath);
+    console.log('Processed users:', JSON.stringify(users, null, 2));
   } catch (error) {
     console.error('Error processing orders:', error);
   }
